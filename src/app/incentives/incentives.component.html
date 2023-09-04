@@ -1,0 +1,148 @@
+<!-- <div class="container-fluid" style="padding: 10px">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip color="white" selected>
+          Incentive 
+          <mat-icon>add_circle_outline</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+</div> -->
+
+<div class="row">
+    <div class="col-md-8" style="margin:10px 0px">
+        <label class="text-bold">Language *</label>
+        <select class="form-control" [(ngModel)]="language" (change)="selectLanguage($event)">
+            <option value="">Select</option>
+            <option [value]="l.shortCode" [attr.menuId]="l.incentivesMenuId" *ngFor="let l of languageList">{{l.language}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 pd-0">
+        <div class="row" >
+            <div class="col-md-12 pd-0" [ngClass]="{'deactive' : incentive == 'doc'}" 
+            style="margin: 0px 10px 10px; padding:10px 0px; border: 1px solid #354476;border-radius: 3px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-bold ">
+                            <input type ="radio" name="incentive" value="point" [(ngModel)]="incentive"/> Bullet points 
+                            <span *ngIf="incentive == 'point'">*</span> 
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="max-height: 500px;overflow: auto;">
+                        <table class="table table-bordered header-table">
+                            <thead>
+                                <tr>
+                                    <th>SR</th>
+                                    <th>Point</th>
+                                    <th>Font Size (in Pixel)</th>
+                                    <th>Color</th>
+                                </tr>
+                                <tr *ngFor="let p of createRange(pointSize);">
+                                    <td>{{p}}</td>
+                                    <td>
+                                        <input type="text" class="form-control setBlank" id="point{{p}}" [disabled]="incentive == 'doc'"/>
+                                    </td>
+                                    <td>
+                                        <select class="form-control setBlank" id="fontSize{{p}}" [disabled]="incentive == 'doc'">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let fl of fontList">{{fl}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="form-control setBlank" id="color{{p}}" [disabled]="incentive == 'doc'">
+                                            <option value="">Select</option>
+                                            <option *ngFor="let cl of colorList">{{cl}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="addRemoveMore('+')" [disabled]="incentive == 'doc'">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button> &nbsp;
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="addRemoveMore('-')" [disabled]="incentive == 'doc'">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                        </button> &nbsp;
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitIncentive()" [disabled]="incentive == 'doc'">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-md-12 pd-0" [ngClass]="{'deactive' : incentive == 'point'}" style="margin: 0px 10px 10px; padding:10px 0px; border: 1px solid #354476;border-radius: 3px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-bold ">
+                            <input type ="radio" name="incentive" value="doc" [(ngModel)]="incentive"/> Upload PDF/PPT 
+                            <span *ngIf="incentive == 'doc'">*</span> 
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <input type="file" class="form-control" id="attachment" accept=".pdf,.ppt" (change)="changeListener($event,1)" [disabled]="incentive == 'point'"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" >
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="uploadIncentivePoint()" [disabled]="incentive == 'point'">Upload</button> &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 pd-0" style="margin: 0px 10px 10px; padding:10px 0px; border: 1px solid #354476;border-radius: 3px;">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <label class="text-bold ">Import Incentive <span>*</span> </label>
+                        <input type="file" class="form-control" id="excelData" accept=".xlsx,.csv,.xls" (change)="selectExcel($event)"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="importIncentive()">Upload</button> &nbsp;
+                    </div>
+                    <div class="col-md-6 text-right" >
+                        <button class="btn text-bold text-white tom-border-radius" [ngStyle]="{'background-color':button}" (click)="downloadReport(1)">
+                            Format <i class="fa fa-download" aria-hidden="true"></i>
+                        </button> &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12 pd-0" style="margin: 0px 10px 10px; padding:10px 0px; border: 1px solid #354476;border-radius: 3px;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-bold ">Preview </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="bulletPoint == ''">
+                    <div class="col-md-12">
+                        <h5 class="text-info">No any point found</h5>
+                    </div>
+                </div>
+                <div class="row" *ngIf="bulletPoint != ''">
+                    <div class="col-md-12" *ngIf="type == '1'">
+                        <div [innerHTML]="bulletPoint | safeHtml" ></div>
+                    </div>
+                    <div class="col-md-12" *ngIf="type == '2'">
+                        <a [href]="bulletPoint" target="_blank">PDF/PPT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

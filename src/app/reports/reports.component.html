@@ -1,0 +1,54 @@
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel [expanded]="0">
+        <mat-expansion-panel-header>
+			<mat-panel-title>
+				Shakti Enrolment Report
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+        <div class="container-fluid" >
+            <div class="row" >
+                <div class="col-md-3">
+                    <label class="text-bold">From Date <span title="Reset From date" (click) = "fromDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span></label>
+                    <input type="date" [(ngModel)]="fromDate" class="form-control input-sm"/>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="text-bold">To Date <span title="Reset To date" (click) = "toDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span></label>
+                    <input type="date" [(ngModel)]="toDate" class="form-control input-sm"/>
+                </div>
+                <div class="col-md-3">
+                    <label style="color: transparent;display: block">0</label>
+                    <button class="btn btn-sm text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" (click)="downloadReport(1)">
+                        <i class="fa fa-download"></i> Download Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="1">
+        <mat-expansion-panel-header>
+			<mat-panel-title>
+				Shakti / Sathi
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+        <div class="container-fluid" >
+            <div class="row" >
+                <div class="col-md-3">
+                    <label class="text-bold">From Date <span title="Reset From date" (click) = "fromDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span></label>
+                    <input type="date" [(ngModel)]="fromDate" class="form-control input-sm"/>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="text-bold">To Date <span title="Reset To date" (click) = "toDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span></label>
+                    <input type="date" [(ngModel)]="toDate" class="form-control input-sm"/>
+                </div>
+                <div class="col-md-3">
+                    <label style="color: transparent;display: block">0</label>
+                    <button class="btn btn-sm text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" (click)="downloadReport(2)">
+                        <i class="fa fa-download"></i> Download Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

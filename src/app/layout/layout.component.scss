@@ -1,0 +1,159 @@
+.example-ripple-container {
+    cursor: pointer;
+    text-align: center;
+  
+  
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .unselectable, h6, img{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  // .example_spacer {
+  //   flex: 1 1 auto;
+  // }
+  .mat-drawer.mat-drawer-side {
+    z-index: 1;
+}
+  
+  .mat-sidenav-content .mat-toolbar {
+    // background-color: white;
+    // background-color: #843dff;
+    background-color: #28c1f4;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 8px 6px -6px rgb(133, 133, 133);
+  
+  }
+  
+  .mat-sidenav-content .Searchbar {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #A8A9AA;
+  }
+  
+  .mat-sidenav-content .SearchBarContainer {
+    border: 2px solid #A8A9AA;
+    border-radius: 20px;
+    margin-left: 15px;
+  }
+  
+  .sidenav-container {
+    height: 100%;
+    background-color: #F9FAFD;
+  }
+  
+  .sidenav {
+    width: 16%;
+    background: #354476;
+    background-size: cover;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    color: white;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+    color: white;
+  }
+  
+  .sidenav .mat-toolbar span {
+    position: relative;
+    bottom: -5px;
+  }
+  
+  .NavList {
+    display: inline-block;
+    width: fit-content;
+    box-sizing: border-box;
+    position: relative;
+    bottom: -5px;
+  }
+  
+  .NavList span {
+    display: inline-block;
+    width: fit-content;
+    box-sizing: border-box;
+    margin: 0 5px;
+    padding: 0 10px;
+    font-size: 0.7em;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+  
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 3% 6%;
+    font-family: 'Nunito', sans-serif;
+  }
+  
+  li {
+    margin: 5px 0;
+    font-weight: 600;
+    padding: 2% 8%;
+    border-radius: 8px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-bottom: 1px solid;
+  }
+  
+  img {
+    margin-right: 5%;
+    vertical-align: middle;
+  }
+  
+  .ActiveRoute {
+    background-color: #ed3237;
+    color:white;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  *:focus {
+    outline: 0;
+  }
+  .mat-toolbar{
+    color:white;
+  }
+  .mat-button{
+    padding: 0px;
+    line-height: 0px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .sidenav-container, .logout-btn {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width: 1350px) {
+  .sidenav-container, .logout-btn {
+      font-size: 12px;
+  }
+}
+  
+  

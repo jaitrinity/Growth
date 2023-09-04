@@ -1,0 +1,54 @@
+<div class="container-fluid" style="padding: 10px">
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip color="white">
+          Push Notification
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="text-bold ">Select Branch *</label>
+        <ng-multiselect-dropdown [placeholder]="'Select'" [data]="branchList"
+          [(ngModel)]="selectedBranchList" [settings]="multiSelectdropdownSettings"
+          (onSelect)="onSelectOrDeselectBranch($event)" (onDeSelect)="onSelectOrDeselectBranch($event)" 
+          (onSelectAll)="onSelectAllOrDeselectAllBranch($event)" (onDeSelectAll)="onSelectAllOrDeselectAllBranch($event)">
+        </ng-multiselect-dropdown>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label class="text-bold ">Select Employee *</label>
+        <ng-multiselect-dropdown [placeholder]="'Select'" [data]="employeeList"
+          [(ngModel)]="selectedEmployeeList" [settings]="multiSelectdropdownSettings"
+          (onSelect)="onSelectOrDeselectEmployee($event)" (onDeSelect)="onSelectOrDeselectEmployee($event)" 
+          (onSelectAll)="onSelectAllOrDeselectAllEmployee($event)" (onDeSelectAll)="onSelectAllOrDeselectAllEmployee($event)">
+        </ng-multiselect-dropdown>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label class="text-bold ">Title *</label>
+        <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="title" placeholder="Title..">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <label class="text-bold ">Notification *</label>
+        <textarea class="form-control tom-border-radius" [(ngModel)]="notification" rows="5" placeholder="Notification body.."></textarea>
+    </div>
+</div>
+<div class="row" *ngIf="failResult !=''">
+    <div class="col-md-12">
+        <label class="text-bold text-danger">
+            * Notification not send to following user: {{failResult}} 
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <label style="color: transparent;display: block">filter</label>
+        <button class="btn text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" (click)="sendNotification()">Send Notification</button>
+    </div>
+</div>

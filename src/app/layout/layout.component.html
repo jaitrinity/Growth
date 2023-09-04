@@ -1,0 +1,56 @@
+<main class="Background" *ngIf='ShowLoading'>
+  <div class="loader">
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__bar"></div>
+      <div class="loader__ball"></div>
+  </div>    
+</main>
+
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #SideMenu class="sidenav" fixedInViewport
+  
+        [mode]="'side'"
+        [opened]="ToggleVariable">
+      <mat-toolbar style="background: white;height: 130px">
+        <img src="assets/img/Aviom.png" alt="assets.logo.svg" style="width:175px;height:120px">
+      </mat-toolbar>
+      <ul class="unselectable" style="height: 65%; overflow-x: auto;">
+        <ul *ngIf="loginEmpRoleId == '1'" style="padding: 0px;">
+          <li routerLink="m1" [routerLinkActive] = '["ActiveRoute"]' >
+            Employee
+          </li>
+          <!-- <li routerLink="m2" [routerLinkActive] = '["ActiveRoute"]' >
+            Branch
+          </li> -->
+          <li routerLink="notification" [routerLinkActive] = '["ActiveRoute"]' >
+            Push Notification
+          </li>
+        </ul>
+        <li [routerLink]="[menu.routerLink]" [routerLinkActive] = '["ActiveRoute"]' *ngFor="let menu of menuList"> 
+            {{menu.name}}
+        </li>
+        <!-- <li routerLink="m11" [routerLinkActive] = '["ActiveRoute"]' > 
+            Report
+        </li> -->
+        
+      </ul>
+      <ul>
+        <li>
+          <button mat-button (click)='Logout()' class="logout-btn">
+          {{loginEmpName}} || Logout 
+          <mat-icon>exit_to_app</mat-icon>
+          </button></li>
+      </ul>
+              
+    </mat-sidenav>
+    <mat-sidenav-content>
+  
+      <div style="background: white;min-height: 96%;margin: 10px;border: 1px solid #efe1e1;">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

@@ -1,0 +1,423 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$Growth-primary: mat-palette($mat-indigo);
+$Growth-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$Growth-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$Growth-theme: mat-light-theme($Growth-primary, $Growth-accent, $Growth-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($Growth-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* width */
+// ::-webkit-scrollbar {
+//     width: 10px;
+//   }
+  
+//   /* Track */
+//   ::-webkit-scrollbar-track {
+//     background: #f1f1f1;
+//   }
+  
+//   /* Handle */
+//   ::-webkit-scrollbar-thumb {
+//     background: #888;
+//   }
+  
+//   /* Handle on hover */
+//   ::-webkit-scrollbar-thumb:hover {
+//     background: #555;
+//   }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.Background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(00, 00, 00, 0.6);
+    z-index: 1060;
+    text-align: center;
+}
+ng2-smart-table tbody > tr > td{
+    word-break: break-word;
+}
+img.icon{
+    width: 50px;
+    height: 50px
+}
+img[src=null]{
+    display: none;
+}
+mat-slider {
+    width: 87%;
+}
+.mat-option{
+    height: 30px !important;
+}
+
+table tbody{
+    font-weight: 500 !important;
+}
+.input-sm{
+    height: 25px !important;
+    box-shadow: 0px 0px 6px #b3b3b3;
+    margin-bottom: 5px !important;
+}
+.select-sm{
+    padding: 0px 10px !important;
+}
+// .modal-backdrop {
+//     position: relative !important;
+// }
+.fa-refresh{
+    cursor: pointer;
+  }
+.det-modal-body{
+    height: 505px !important;
+    overflow: auto;
+    // background: #5396d0;
+}
+.text-bold{
+    font-weight: 500 !important;
+    color : #354476;
+}
+.empLocMappClass table thead{
+    background-color : #354476 !important;
+  }
+ng2-smart-table .ng2-smart-action-delete-delete,
+ng2-smart-table .ng2-smart-action-edit-edit,
+ng2-smart-table .ng2-smart-action-custom-custom {
+    padding:3px;
+    // color:black !important;
+    color: #354476 !important;
+    font-weight: 500;
+    border: 1px solid #354476;
+    border-radius: 3px;
+    font-size:12px;
+    margin-right: 5px
+}
+mat-tab-group.max-content-width .mat-tab-body-wrapper{
+    width: max-content !important;
+}
+.mat-tab-group, .mat-expansion-panel-content{
+    font-family: inherit;
+}
+ul.item2{
+    position: relative;
+}
+.table-data-div{
+    padding:0px !important;
+}
+.info{
+    cursor: pointer;
+}
+.multiselect-dropdown{
+    background-color: white;
+    border-radius : 10px;
+}
+
+.multiselect-dropdown .dropdown-btn {
+    padding: 0px 12px !important;
+    box-shadow: 0px 0px 6px #b3b3b3;
+    margin-bottom: 5px !important;
+}
+
+.multiselect-dropdown .selected-item{
+    max-width: 195px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+input[type="file"]{
+    font-size: xx-small;
+}
+.tom-border-radius{
+    padding: 0px .75rem !important;
+}
+
+.multiselect-dropdown .selected-item{
+    // color: black !important;
+    // background: transparent !important;
+    border: transparent !important;
+}
+
+.multiselect-dropdown .selected-item :hover{
+    border: none !important;
+}
+
+ng2-smart-table .ng2-smart-action-delete-delete:hover,
+ng2-smart-table .ng2-smart-action-edit-edit:hover,
+ng2-smart-table .ng2-smart-action-custom-custom:hover{
+    text-decoration: none !important;
+    background: #ed3237;
+    color:white !important;
+}
+// .multiselect-dropdown .dropdown-list{
+//     position: fixed !important;
+//     width : 14% !important;
+// }
+ng2-smart-table .ng2-smart-pagination-nav > ul > li > a,.mat-expansion-panel-header-title {
+    color:#354476 !important;
+}
+ng2-smart-table .page-item.active .page-link {
+    color: #fff !important;
+    background-color: #f28f05 !important;
+    border-color: #354476 !important;
+}
+
+div.page-header{
+    background: #5396d0;
+}
+.mat-expansion-panel-header{
+    height: 40px !important;
+}
+.mat-expansion-panel{
+    overflow: unset !important;
+}
+.modal-dialog {
+    margin: 0.75rem auto !important;
+}
+.example-chip-list {
+    width: 100%;
+  }
+mat-chip{
+    background: #fff !important;
+    border : 1px solid #354476 !important;
+    color: #354476 !important;
+}
+.mat-tab-label .mat-tab-label-content{
+    color: #354476 !important;
+}
+.modal-title{
+    color: #354476 !important;
+}
+// .mat-tab-label-active{
+//     color: #ff1cc9 !important;
+// }
+mat-tab-body{
+    padding: 5px;
+}
+.cdk-overlay-container {
+    z-index: 9999 !important;
+}
+.ng-dirty{
+    color: black !important;
+}
+.loader {
+    transform: scale(1.4);
+    position: relative;
+    width: 75px;
+    left: 50%;
+    top: 30%;
+    height: 100px;
+}
+.loader__bar {
+    position: absolute;
+    bottom: 0;
+    width: 10px;
+    height: 50%;
+    background: #fff;
+    transform-origin: center bottom;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .2);
+}
+.loader__bar:nth-child(1) {
+    left: 0px;
+    transform: scale(1, 0.2);
+    animation: barUp1 4s infinite;
+}
+.loader__bar:nth-child(2) {
+    left: 15px;
+    transform: scale(1, 0.4);
+    animation: barUp2 4s infinite;
+}
+.loader__bar:nth-child(3) {
+    left: 30px;
+    transform: scale(1, 0.6);
+    animation: barUp3 4s infinite;
+}
+.loader__bar:nth-child(4) {
+    left: 45px;
+    transform: scale(1, 0.8);
+    animation: barUp4 4s infinite;
+}
+.loader__bar:nth-child(5) {
+    left: 60px;
+    transform: scale(1, 1);
+    animation: barUp5 4s infinite;
+}
+.loader__ball {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    animation: ball 4s infinite;
+}
+@keyframes ball {
+    0% {
+        transform: translate(0, 0);
+   }
+    5% {
+        transform: translate(8px, -14px);
+   }
+    10% {
+        transform: translate(15px, -10px);
+   }
+    17% {
+        transform: translate(23px, -24px);
+   }
+    20% {
+        transform: translate(30px, -20px);
+   }
+    27% {
+        transform: translate(38px, -34px);
+   }
+    30% {
+        transform: translate(45px, -30px);
+   }
+    37% {
+        transform: translate(53px, -44px);
+   }
+    40% {
+        transform: translate(60px, -40px);
+   }
+    50% {
+        transform: translate(60px, 0);
+   }
+    57% {
+        transform: translate(53px, -14px);
+   }
+    60% {
+        transform: translate(45px, -10px);
+   }
+    67% {
+        transform: translate(37px, -24px);
+   }
+    70% {
+        transform: translate(30px, -20px);
+   }
+    77% {
+        transform: translate(22px, -34px);
+   }
+    80% {
+        transform: translate(15px, -30px);
+   }
+    87% {
+        transform: translate(7px, -44px);
+   }
+    90% {
+        transform: translate(0, -40px);
+   }
+    100% {
+        transform: translate(0, 0);
+   }
+}
+@keyframes barUp1 {
+    0% {
+        transform: scale(1, 0.2);
+   }
+    40% {
+        transform: scale(1, 0.2);
+   }
+    50% {
+        transform: scale(1, 1);
+   }
+    90% {
+        transform: scale(1, 1);
+   }
+    100% {
+        transform: scale(1, 0.2);
+   }
+}
+@keyframes barUp2 {
+    0% {
+        transform: scale(1, 0.4);
+   }
+    40% {
+        transform: scale(1, 0.4);
+   }
+    50% {
+        transform: scale(1, 0.8);
+   }
+    90% {
+        transform: scale(1, 0.8);
+   }
+    100% {
+        transform: scale(1, 0.4);
+   }
+}
+@keyframes barUp3 {
+    0% {
+        transform: scale(1, 0.6);
+   }
+    100% {
+        transform: scale(1, 0.6);
+   }
+}
+@keyframes barUp4 {
+    0% {
+        transform: scale(1, 0.8);
+   }
+    40% {
+        transform: scale(1, 0.8);
+   }
+    50% {
+        transform: scale(1, 0.4);
+   }
+    90% {
+        transform: scale(1, 0.4);
+   }
+    100% {
+        transform: scale(1, 0.8);
+   }
+}
+@keyframes barUp5 {
+    0% {
+        transform: scale(1, 1);
+   }
+    40% {
+        transform: scale(1, 1);
+   }
+    50% {
+        transform: scale(1, 0.2);
+   }
+    90% {
+        transform: scale(1, 0.2);
+   }
+    100% {
+        transform: scale(1, 1);
+   }
+}
+.row{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.example_spacer{
+    flex: 1 1 auto;
+}
+.mat-drawer-content, .mat-drawer-container{
+    z-index: unset !important;
+}

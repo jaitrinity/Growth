@@ -1,0 +1,132 @@
+
+    <div class="container-fluid" style="padding: 10px">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <span class="text-bold">Filter</span>
+              </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            
+        
+            <div class="col-md-3">
+              <label class="text-bold ">Start Date <span title="Reset start date" (click) = "filterStartDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span> </label>
+              <input type="date" class="form-control input-sm tom-border-radius" [(ngModel)]="filterStartDate">
+            </div>
+            <div class="col-md-3">
+              <label class="text-bold">End Date <span title="Reset end date" (click) = "filterEndDate = ''"><i class="fa fa-refresh" aria-hidden="true"></i></span></label>
+              <input type="date" class="form-control input-sm tom-border-radius"  [(ngModel)]="filterEndDate">
+            </div>
+            <div class="col-md-3">
+              <label style="color: transparent;display: block">filter</label>
+              <button class="btn btn-sm text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" (click)="getMenuTrasactions(1)">
+                <i class="fa fa-filter" aria-hidden="true"></i> Filter
+              </button>
+              &nbsp;
+              <button class="btn btn-sm text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" [disabled] = "transactionHdrList.length == 0"
+              (click)="exportData()">
+                <i class="fa fa-download"></i> Export 
+              </button>
+              
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+      
+    <div class="row" style="margin-bottom: 10px;overflow: auto">
+      <div class="col-md-12">
+        <ng2-smart-table class="hdr" [settings]="transactionHdrSettings" [source]="transactionHdrList" (delete)="viewDetails($event)"></ng2-smart-table>
+      </div>
+    </div>
+      
+      
+      <div id="viewDetailsModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg" style="max-width:  1320px !important">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 10px !important;">
+                  <h4 class="modal-title">View : {{transactionId}}</h4>
+                  <div>
+                    <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeAnyModal('viewDetailsModal')">Close</button>
+                  </div>
+                </div>
+                <div class="modal-body det-modal-body">
+                  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <table class="table table-bordered myTable" style="box-shadow: 0px 0px 3px 0px gray">
+                        <thead>
+                          <tr>
+                            <th style="width: 65px;">SR No</th> <th style="width: 500px;">Checkpoint</th> <th>Value</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let td of transactionDetList" [ngClass]="{'text-white' : td.typeId == 17}" [ngStyle]="{'background-color': td.typeId == 17 ? color1 : ''}">
+                            <td *ngIf="td.value.trim() != '' ">{{td.srNumber}}</td>
+                            <td *ngIf="td.value.trim() != '' ">{{td.checkpoint}}</td>
+                            <td *ngIf="td.value.trim() != '' && td.typeId != 4 && td.typeId != 7 && td.typeId != 8">{{td.value}}</td>
+                            <td *ngIf="td.value.trim() != '' && (td.typeId == 7)">
+                              <div class="row" >
+                                <div class="col-md-3">
+                                  <img [src] = "v" *ngFor="let v of td.value?.split(',')" class="small-image img-thumbnail" (click)="openMedia(v,'7');">
+                                </div>
+                                <div class="col-md-6">
+                                  <div>Latlong : <a href="https://www.google.co.in/maps/search/{{td.imgLatLong}}" target="blank">{{td.imgLatLong}}</a></div>
+                                  <div>Datetime : {{td.imgDatetime}}</div>
+                                </div>
+                              </div>
+                            </td>
+                            <td *ngIf="td.value.trim() != '' && (td.typeId == 4) ">
+                              <span *ngFor="let v of td.value?.split(',')" (click)="openMedia(v,'4')">
+                                <i class="fa fa-file img-thumbnail" aria-hidden="true"></i> &nbsp;
+                              </span>
+                            </td>
+                            <td *ngIf="td.value.trim() != '' && (td.typeId == 8) ">
+                              <span *ngFor="let v of td.value?.split(',')" (click)="openMedia(v,'8')">
+                                <i class="fa fa-video-camera img-thumbnail" aria-hidden="true"></i> &nbsp;
+                              </span>
+                            </td>
+                          </tr>
+                          <tr *ngIf="viewRemark !=''">
+                            <td colspan="3">Remark : {{viewRemark}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="row" *ngIf="viewStatus == 'Created' && (actionButtonArr.length != 0)">
+                    <div class="col-md-12">
+                      <label class="text-bold">Remark *</label>
+                      <textarea rows="3" class="form-control tom-border-radius" [(ngModel)]="remark"></textarea>
+                    </div>
+                    
+                    <div class="col-md-3">
+                      <label style="color: transparent;display: block">filter</label>
+                      <button *ngFor="let ab of actionButtonArr" style="margin-right: 10px;" class="btn btn-sm text-white text-bold tom-border-radius"
+                      [ngStyle]="{'background-color':button}" (click)="changeTransactionStatus(ab.action)"> 
+                        {{ab.button}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div id="showImgModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Img</h4>
+            </div>
+            <div class="modal-body" style="height: 450px;overflow: auto;">
+              <div [innerHTML]="innerHTMLTxt"></div>
+            </div>
+            <div class="modal-footer">
+              <button [ngStyle]="{'background-color':button}" type="button" class="btn  btn-sm text-white text-bold" (click)="closeAnyModal('showImgModal')">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>

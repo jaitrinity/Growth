@@ -1,0 +1,127 @@
+
+  <div class="container-fluid" style="padding: 10px">
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip color="white" (click)="openAnyModal('createLocationModal')" selected>
+        Create Branch 
+        <mat-icon>add_circle_outline</mat-icon> 
+      </mat-chip>
+      
+      <mat-chip color="white" selected (click)="exportData()">
+        Export
+        <mat-icon>download</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
+  <mat-tab-group>
+    
+    <mat-tab label="View Branch">
+      <div class="row" style="margin-bottom: 10px;overflow: auto;">
+        <div class="col-md-12 table-data-div">
+          <ng2-smart-table [settings]="locationTableSettings" [source]="branchList" (custom)="onCustomAction($event)"></ng2-smart-table>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+      <div id="createLocationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header" style="padding: 10px !important;">
+              <h4 class="modal-title"></h4>
+              <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeAnyModal('createLocationModal')">Close</button>
+            </div>
+            <div class="modal-body det-modal-body">
+              <div class="row" >
+                <div class="col-md-12">
+                  <label class="text-bold ">! All * fields are Mandatory.</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <label class="text-bold ">Branch Code <span>*</span> </label>
+                    <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="branchCode">
+                </div>
+
+                <div class="col-md-4">
+                  <label class="text-bold ">Branch Name <span>*</span> </label>
+                  <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="branchName">
+                </div>
+                <div class="col-md-4">
+                  <label class="text-bold ">State Name <span>*</span> </label>
+                  <ng-multiselect-dropdown [placeholder]="'Select'" [data]="stateList"
+                    [(ngModel)]="selectedStateList" [settings]="singleSelectdropdownSettings">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="text-bold ">Branch Address <span>*</span> </label>
+                  <textarea class="form-control tom-border-radius" rows="5" [(ngModel)]="branchAddress" style="resize: none;"></textarea>
+                </div> 
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <label style="color: transparent;display: block">filter</label>
+                  <button class="btn text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" (click)="submitLocData()">Submit</button>
+                </div>
+              </div>
+            
+            </div>
+            <div class="modal-footer">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="editLocationModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 10px !important;">
+                  <h4 class="modal-title">Edit : {{editableId}}</h4>
+                  <button type="button" class="btn  btn-sm text-white" [ngStyle]="{'background-color':button}" (click)="closeEditModal()">Close</button>
+                </div>
+                <div class="modal-body det-modal-body">
+                  <div class="row" >
+                    <div class="col-md-12">
+                      <label class="text-bold ">! All * fields are Mandatory.</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <label class="text-bold ">Branch Code <span>*</span></label>
+                      <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="editableBranchCode" [disabled]=true>
+                    </div>
+                    <div class="col-md-4">
+                      <label class="text-bold ">Branch Name <span>*</span></label>
+                      <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="editableBranchName" (input)="isDoAnyChange = false">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="text-bold ">State Name <span>*</span></label>
+                      <!-- <input type="text" class="form-control input-sm tom-border-radius" [(ngModel)]="editableStateName" [disabled]=true> -->
+                      <ng-multiselect-dropdown [placeholder]="'Select'" [data]="stateList"
+                        [(ngModel)]="editSelectedStateList" [settings]="singleSelectdropdownSettings"
+                        (onSelect)="isDoAnyChange = false" (onSelectAll)="isDoAnyChange = false">
+                      </ng-multiselect-dropdown>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-bold ">Address <span>*</span></label>
+                      <textarea class="form-control tom-border-radius" rows="5" [(ngModel)]="editableAddress" (input)="isDoAnyChange = false" style="resize: none;"></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <label style="color: transparent;display: block">filter</label>
+                      <button class="btn text-white text-bold tom-border-radius" [ngStyle]="{'background-color':button}" [(disabled)] = "isDoAnyChange" (click)="editLocationData()">Save</button>
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+      </div>

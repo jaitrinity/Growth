@@ -1,0 +1,10 @@
+.goToMap:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  agm-map {
+    height: 300px;
+  }
+  agm-map.editMap {
+    height: 364px;
+  }
